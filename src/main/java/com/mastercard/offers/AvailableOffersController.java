@@ -95,7 +95,6 @@ public class AvailableOffersController {
                     null, null, sort, unitSystem, searchText);
 
             model.addAttribute("offers", offers);
-
         } catch (Exception e) {
             System.out.println("Error: " + e);
             model.addAttribute("error", e.getMessage());

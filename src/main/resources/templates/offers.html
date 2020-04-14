@@ -6,20 +6,18 @@
 </head>
 <body>
 
-<p><h1>Available Offers</h1></p>
+<p><h1>Available Merchant Offers</h1></p>
 
 <table border="1">
     <thead>
     <tr>
         <th>Offer Code </th>
-        <th>Title </th>
-        <th>Sub Title </th>
-        <th>Description </th>
+        <th>Offer </th>
+        <th>Offer Detail </th>
+        <th>Activate</th>
         <th>Category </th>
         <th>Merchant Distance </th>
-        <th>Unit </th>
-        <th>Eligibility </th>
-        <th>Image </th>
+        <th>Eligibility Dates </th>
         <th>Merchant </th>
     </tr>
     </thead>
@@ -27,20 +25,21 @@
     <tbody align="center">
     <tr th:each="offer: ${offers}" align="center">
         <td th:text="${offer.offerId}" />
-        <td th:text="${offer.title} " />
+        <td> <label th:text="${offer.title} " /> <img th:src="${offer.offerImages.squareImageUrl}" height="42" width="42"/></td>
         <td th:text="${offer.subTitle} " />
         <td th:text="${offer.description} " />
         <td th:text="${offer.category} " />
-        <td th:text="${offer.distanceToMerchant} " />
-        <td th:text="${offer.distanceUnit} " />
+        <td> <label th:text="${offer.distanceToMerchant}" /> <label th:text="${offer.distanceUnit}" /> </td>
+
         <td>
-            Start Date:<label th:text="${offer.offerEligibility.startDate}" />
-            End Date:<label th:text="${offer.offerEligibility.startDate}" /> </td>
-        <td><img th:src="${offer.offerImages.squareImageUrl}"/></td>
+            <label th:text="${offer.offerEligibility.startDate}" />
+            - <label th:text="${offer.offerEligibility.endDate}" /> </td>
         <td th:text="${offer.merchant.name} " />
     </tr>
     </tbody>
 </table>
+
+<p> <a href="/index.html">Home</a></p>
 
 </body>
 </html>
