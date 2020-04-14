@@ -1,4 +1,4 @@
-# AvailableMerchantOffersReferenceImpl
+# Available Merchant Offers Reference Implementation
 
 ## Setup Pre-requisites:
 
