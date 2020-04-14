@@ -20,6 +20,7 @@ Open *File/New/Project From Existing Resources/Import Project From External Mode
 
 #### Open Maven window:
  Click on *Lifecycle/Clean*
+ 
  Click on *Lifecycle/Install*
 ###### At this point all the maven dependencies are downloaded
 
