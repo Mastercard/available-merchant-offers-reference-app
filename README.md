@@ -14,7 +14,9 @@ If your editor is IntelliJ IDEA, it will have the Maven and JDK already with it.
 
 Checkout the code from the repo. 
 
-Import the code straight into your IDE: IntelliJ IDEA / Maven project
+Import the code straight into your IDE: 
+On IntelliJ IDEA:
+Open File/New/Project From Existing Resources/Import Project From External Model/Maven
 
  Open Maven window:
 
@@ -24,8 +26,11 @@ Import the code straight into your IDE: IntelliJ IDEA / Maven project
 
  At this point you have all the maven dependencies created.
  
+ Compile your source files:
+ Click on Lifecycle/compile
 
-Next select and run AvailableOffersApplication.java
+
+Run AvailableOffersApplication.java
 
 This will start up your local server. 
 
