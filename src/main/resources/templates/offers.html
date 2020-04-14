@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Merchant Offers </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<p><h1>Available Offers</h1></p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Offer Code </th>
+        <th>Title </th>
+        <th>Sub Title </th>
+        <th>Description </th>
+        <th>Category </th>
+        <th>Merchant Distance </th>
+        <th>Unit </th>
+        <th>Eligibility </th>
+        <th>Image </th>
+        <th>Merchant </th>
+    </tr>
+    </thead>
+
+    <tbody align="center">
+    <tr th:each="offer: ${offers}" align="center">
+        <td th:text="${offer.offerId}" />
+        <td th:text="${offer.title} " />
+        <td th:text="${offer.subTitle} " />
+        <td th:text="${offer.description} " />
+        <td th:text="${offer.category} " />
+        <td th:text="${offer.distanceToMerchant} " />
+        <td th:text="${offer.distanceUnit} " />
+        <td>
+            Start Date:<label th:text="${offer.offerEligibility.startDate}" />
+            End Date:<label th:text="${offer.offerEligibility.startDate}" /> </td>
+        <td><img th:src="${offer.offerImages.squareImageUrl}"/></td>
+        <td th:text="${offer.merchant.name} " />
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

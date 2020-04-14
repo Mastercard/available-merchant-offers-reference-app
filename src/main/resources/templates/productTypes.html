@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Offers - Product Types</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<p><h1>Available Merchant Offers - Products</h1></p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Product Code</th>
+        <th>Product Name</th>
+    </tr>
+    </thead>
+
+    <tbody align="center">
+        <tr th:each="productType: ${productTypes}" align="center">
+                <td th:text="${productType.productType}" />
+                <td th:text="${productType.displayProductType} " />
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

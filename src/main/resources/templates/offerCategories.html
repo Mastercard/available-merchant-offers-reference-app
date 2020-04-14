@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Offers - Categories</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<p><h1>Available Merchant Offers - Categories</h1></p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Category Name</th>
+    </tr>
+    </thead>
+
+    <tbody align="center">
+        <tr th:each="offerCategory: ${offerCategories}" align="center">
+                <td th:text="${offerCategory.id}" />
+                <td th:text="${offerCategory.name} " />
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

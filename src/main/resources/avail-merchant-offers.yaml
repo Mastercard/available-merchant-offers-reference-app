@@ -1,0 +1,563 @@
+openapi: 3.0.2
+info:
+  description: >
+    The Avail Merchant Offers API is the experience API offered by Mastercard
+    Digital Enablement suite.  
+
+
+    The API provides the experiences for the consumer to search, filter and sort
+    merchant offers around a certain geographical location. 
+
+
+    It has the operations for retrieving the reference data like Offer
+    Categories, Offer Product Types and so on. 
+
+  title: Avail Merchant Offers API
+  version: 1.0.0
+  contact:
+    name: Mastercard Developers
+    email: MDX_DEV@mastercard.com
+  termsOfService: 'https://developer.mastercard.com/terms-of-use'
+servers:
+  - url: 'https://stage.api.mastercard.com/de/merchantoffers'
+    description: Avail Merchant Offers API - STAGE
+tags:
+  - name: Offers
+    description: Allows the user to query Merchant Offers nearby user location.
+  - name: ReferenceData
+    description: Allows the user to get reference data to create appropriate filters on search criteria.
+paths:
+  /offer-categories:
+    get:
+      description: >
+        The API to retrieve the list of categories that the available offers are
+        categoried into.
+      operationId: getOffer categories
+      summary: List of Offer Categories
+      tags:
+        - ReferenceData
+      parameters:
+        - $ref: '#/components/parameters/header-Accept-Language'
+        - $ref: '#/components/parameters/header-Accept'
+      responses:
+        '200':
+          description: |
+            200 - OK: The offer categories retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OfferCategory'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+  /offer-product-types:
+    get:
+      description: >
+        The API to retrieve the list of card product types that the API
+        supports. 
+      operationId: getProductTypes
+      summary: List of Product Types
+      tags:
+        - ReferenceData
+      parameters:
+        - $ref: '#/components/parameters/header-Accept-Language'
+        - $ref: '#/components/parameters/header-Accept'
+      responses:
+        '200':
+          description: |
+            200 - OK: The product type(s) retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductType'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+  /offers:
+    get:
+      description: >
+        The API to retrieve the list of offers based on the filter criteria
+        supplied. 
+
+        The API also supports pagination and sorting which can also be supplied
+        using the offset, limit and sort parameters.
+      operationId: getMerchantOffers
+      summary: List of Offers based on filter criteria
+      tags:
+        - Offers
+      parameters:
+        - $ref: '#/components/parameters/header-Correlation-ID'
+        - $ref: '#/components/parameters/header-Accept-Language'
+        - $ref: '#/components/parameters/header-Accept'
+        - $ref: '#/components/parameters/query-lat'
+        - $ref: '#/components/parameters/query-long'
+        - $ref: '#/components/parameters/query-productType'
+        - $ref: '#/components/parameters/query-category'
+        - $ref: '#/components/parameters/query-radius' 
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-sort'
+        - $ref: '#/components/parameters/query-unitSystem'
+        - $ref: '#/components/parameters/query-searchText'
+      responses:
+        '200':
+          description: >
+            200 - OK: The merchant offers have been successfully retrieved.
+            Return an empty list in case no offer matched the search criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Offer'
+        '400':
+          $ref: '#/components/responses/400-BadRequest'
+        '401':
+          $ref: '#/components/responses/401-Unauthorized'
+  
+components:
+  parameters:
+    header-Correlation-ID:
+      name: Correlation-ID
+      in: header
+      description: >-
+        The input header for the consumers to provide the reference id/
+        correlation id to co-relate the requests, made to the API, to the
+        internal id they are maintaining.
+      required: false
+      allowEmptyValue: false
+      allowReserved: true
+      schema:
+        type: string
+        
+    header-Accept-Language:
+      name: Accept-Language
+      in: header
+      description: |
+        Language in which API should respond
+      required: false
+      schema:
+        type: string
+        
+    header-Accept:
+      name: Accept
+      in: header
+      description: |
+        Format in which API should respond
+      required: false
+      schema:
+        type: string
+        
+    query-category:
+      name: category
+      in: query
+      description: |
+        The filter parameter to supply the offer category code. The category code is supplied. The category ids are fetched from /offer-categories endpoint
+      required: false
+      schema:
+        type: string
+        
+    query-productType:
+      name: product_type
+      in: query
+      description: >
+        The filter parameter to supply the offer product type code. The product type code is supplied. The product type codes are fetched from /offer-product-types endpoint
+      required: true
+      schema:
+        type: string
+        
+    query-offset:
+      name: offset
+      in: query
+      required: false
+      description: >
+        The input parameter to specify the page offset when requesting the list
+        of records using the pagination.  The API will return the results for
+        the particular page.  If the input is not supplied, then by default the
+        first page is returned.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+        
+    query-limit:
+      name: limit
+      in: query
+      required: false
+      description: >
+        The input parameter to specify the number of records on each page when
+        requesting the list of records using the pagination. 
+      schema:
+        type: integer
+        default: 10
+        minimum: 1
+        
+    query-sort:
+      name: sort
+      in: query
+      description: >
+        The input parameter to supply the sorting criteria. The sort direction
+        can be supplied using the +/- sign prefixing the value of the parameter
+        signifying the ascending or descending order.
+      required: false
+      schema:
+        type: string
+        default: +distance
+        
+    query-lat:
+      name: latitude
+      in: query
+      description: >
+        The input parameter to specify the **latitude** of the location of the
+        consumer invoking the API to get the list of offers nearby that
+        location.
+      required: true
+      schema:
+        type: number
+        minimum: -90
+        maximum: 90
+        
+    query-long:
+      name: longitude
+      in: query
+      description: >
+        The input parameter to specify the **longitude** of the location of the
+        consumer invoking the API to get the list of offers nearby that
+        location.
+      required: true
+      schema:
+        type: number
+        minimum: -180
+        maximum: 180
+        
+    query-radius:
+      name: radius
+      in: query
+      description: >
+        The input parameter to supply the radius of the circular geographical
+        area, from the location of the consumer, within which the offers would
+        be searched.
+      required: false
+      schema:
+        type: number
+        default: 500
+        
+    query-searchText:
+      name: search_text
+      in: query
+      description: >
+        The optional search text to perform the full-text search on the specific
+        attributes of the offer.  Minimum 3 characters should be supplied in the
+        input when filtering using this parameters.
+      required: false
+      allowEmptyValue: false
+      allowReserved: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 50
+    query-pickupLat:
+      name: pickup_lat
+      in: query
+      description: |
+        Latitude of the pickup location
+      required: true
+      schema:
+        type: number
+        minimum: -90
+        maximum: 90
+        
+    query-pickupLng:
+      name: pickup_lng
+      in: query
+      description: |
+        Longitude of the pickup location
+      required: true
+      schema:
+        type: number
+        minimum: -180
+        maximum: 180
+        
+    query-dropLat:
+      name: drop_lat
+      in: query
+      description: |
+        Latitude of the drop location
+      required: true
+      schema:
+        type: number
+        minimum: -90
+        maximum: 90
+        
+    query-dropLng:
+      name: drop_lng
+      in: query
+      description: |
+        Longitude of the drop location
+      required: true
+      schema:
+        type: number
+        minimum: -180
+        maximum: 180
+        
+    query-unitSystem:
+      name: unit_system
+      in: query
+      description: |
+        Unit system values [metric, imperial]
+      required: false
+      schema:
+        type: string
+        default: metric
+  schemas:
+    Offer:
+      type: object
+      description: |
+        Represents the Merchant provided Offer
+      properties:
+        offerId:
+          type: string
+          readOnly: true
+          description: |
+            Offer identifier 
+         
+        title:
+          type: string
+          description: |
+            Offer title
+          
+        subTitle:
+          type: string
+          description: |
+            Offer sub title
+          
+        description:
+          type: string
+          description: |
+            Offer description
+          
+        category:
+          type: string
+          description: |
+            Offer category
+          
+        distanceToMerchant:
+          description: |
+            Distance of the merchant from the user
+          type: number
+          
+        distanceUnit:
+          description: |
+            distance unit
+          type: string
+          
+        offerEligibility:
+          $ref: '#/components/schemas/OfferEligibility'
+        offerImages:
+          $ref: '#/components/schemas/OfferImages'
+        merchant:
+          $ref: '#/components/schemas/Merchant'
+    OfferImages:
+      type: object
+      description: |
+        Offer Images
+      properties:
+        rectangleImageUrl:
+          type: string
+          description: |
+            The url to get the rectangular image of the offer.
+            
+        squareImageUrl:
+          type: string
+          description: |
+            The url to get the square shape image of the offer.
+            
+    OfferEligibility:
+      type: object
+      description: |
+        The eligibility criteria for the offer.
+      properties:
+        startDate:
+          type: string
+          format: datetime
+          
+        endDate:
+          type: string
+          format: datetime
+          
+    ProductType:
+      type: object
+      description: >
+        The representation of the product types against which the offers are
+        available.
+      properties:
+        productType:
+          type: string
+          description: |
+            The product type code.
+        displayProductType:
+          type: string
+          description: |
+            The displayable (localized) text of the product type.
+    OfferCategory:
+      type: object
+      readOnly: true
+      description: |
+        Offer Categories
+      properties:
+        id:
+          type: string
+          
+        name:
+          type: string
+          
+    Merchant:
+      type: object
+      description: |
+        Merchant request body object
+      properties:
+        name:
+          description: |
+            Merchant's name
+          type: string
+          
+        emailAddress:
+          description: |
+            Merchant's email address
+          type: string
+          format: email
+          
+        contactNumber:
+          description: |
+            Merchant's phone number
+          type: string
+          
+        address:
+          description: |
+            Merchant's address
+          type: string
+          
+        city:
+          description: |
+            merchant's city
+          type: string
+          
+        country:
+          description: |
+            Merchant's country
+          type: string
+          
+        website:
+          description: |
+            Merchant's website
+          type: string
+          
+        location:
+          $ref: '#/components/schemas/MerchantLocation'
+        ratings:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/MerchantRating'
+    MerchantLocation:
+      type: object
+      properties:
+        latitude:
+          description: |
+            The latitude of the merchant location
+          type: number
+          minimum: -90
+          maximum: 90
+          
+        longitude:
+          description: |
+            The longitude of the merchant location
+          type: number
+          minimum: -180
+          maximum: 180
+    MerchantRating:
+      description: |
+        Represents the rating information for an entity.
+      type: object
+      properties:
+        rating:
+          description: |
+            Merchant rating
+          type: number
+          minimum: -1
+          maximum: 5
+        source:
+          description: |
+            Source from which the merchant rating is fetched
+          type: string
+    BadRequestError:
+      type: object
+      required:
+        - Errors
+      properties:
+        Errors:
+          type: object
+          required:
+            - Error
+          properties:
+            Error:
+              type: array
+              items:
+                type: object
+                properties:
+                  Source:
+                    type: string
+                  ReasonCode:
+                    type: string
+                  Description:
+                    type: string
+                  Recoverable:
+                    type: boolean
+                  Details:
+                    type: string
+    UnauthorizedError:
+      type: object
+      required:
+        - Errors
+      properties:
+        Errors:
+          type: object
+          required:
+            - Error
+          properties:
+            Error:
+              type: array
+              items:
+                type: object
+                properties:
+                  Source:
+                    type: string
+                  ReasonCode:
+                    type: string
+                  Description:
+                    type: string
+                  Recoverable:
+                    type: boolean
+                  Details:
+                    type: string
+  responses:
+    400-BadRequest:
+      description: |
+        Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+    401-Unauthorized:
+      description: |
+        Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
