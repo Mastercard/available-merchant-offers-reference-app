@@ -56,6 +56,21 @@ public class AvailableOffersController {
         return "offerCategories";
     }
 
+    /**
+     * Get All available offers
+     * @param latitude
+     * @param longitude
+     * @param productType
+     * @param categoryCode
+     * @param radius
+     * @param offset
+     * @param limit
+     * @param sort
+     * @param unitSystem
+     * @param searchText
+     * @param model
+     * @return
+     */
     @GetMapping("offers")
     public String getOffers(@RequestParam(name="latitude", required=true) String latitude,
                             @RequestParam(name="longitude", required=true) String longitude,
