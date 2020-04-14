@@ -1,3 +1,4 @@
 # AvailableMerchantOffersReferenceImpl
 Available merchant offers reference implementation
 Springboot with Thymeleaf
+good
