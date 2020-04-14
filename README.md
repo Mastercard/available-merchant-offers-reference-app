@@ -12,11 +12,9 @@ JDK 1.8.0 or later
 
 #### If your editor is IntelliJ IDEA, it will have the Maven and JDK already with it.
 
-#### Checkout the code from the repo. 
-
-#### Import the code straight into your IDE: 
-On IntelliJ IDEA:
-Open *File/New/Project From Existing Resources/Import Project From External Model/Maven*
+#### Checkout the code from the repo. Import the code straight into your IDE: 
+On IntelliJ IDEA: 
+*File/New/Project From Version Control/* (Select GIt from version control dropdown)
 
 #### Open Maven window:
  Click on *Lifecycle/Clean*
@@ -25,8 +23,10 @@ Open *File/New/Project From Existing Resources/Import Project From External Mode
 ###### At this point all the maven dependencies are downloaded
 
 #### Compile your source files:
+ Click on *Lifecycle/clean*
+ 
  Click on *Lifecycle/compile*
-
+ 
 #### Run AvailableOffersApplication.java
 This will start up your local server. 
 
