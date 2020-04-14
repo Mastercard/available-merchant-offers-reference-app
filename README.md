@@ -1,6 +1,6 @@
 # AvailableMerchantOffersReferenceImpl
 
-Setup Pre-requisites:
+# Setup Pre-requisites:
 
 IntelliJ IDEA (or any other IDE of your choice)
 
@@ -14,12 +14,11 @@ If your editor is IntelliJ IDEA, it will have the Maven and JDK already with it.
 
 Checkout the code from the repo. 
 
-Import the code straight into your IDE: 
+# Import the code straight into your IDE: 
 On IntelliJ IDEA:
 Open File/New/Project From Existing Resources/Import Project From External Model/Maven
 
- Open Maven window:
-
+# Open Maven window:
  Click on Lifecycle/Clean
 
  Click on Lifecycle/Install
@@ -34,7 +33,7 @@ Run AvailableOffersApplication.java
 
 This will start up your local server. 
 
-Go to your browser and type in localhost:8080/ and work through the application 
+# Go to your browser and type in localhost:8080/ and work through the application 
  
  
    
