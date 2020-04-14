@@ -16,19 +16,19 @@ JDK 1.8.0 or later
 
 #### Import the code straight into your IDE: 
 On IntelliJ IDEA:
-Open File/New/Project From Existing Resources/Import Project From External Model/Maven
+Open *File/New/Project From Existing Resources/Import Project From External Model/Maven*
 
 #### Open Maven window:
- Click on Lifecycle/Clean
+ Click on *Lifecycle/Clean*
 
- Click on Lifecycle/Install
+ Click on *Lifecycle/Install*
 
 #### At this point all the maven dependencies are downloaded
 
 #### Compile your source files:
- Click on Lifecycle/compile
+ Click on *Lifecycle/compile*
 
 #### Run AvailableOffersApplication.java
 This will start up your local server. 
 
-#### Go to your browser and type in localhost:8080/ and work through the application 
+#### Go to your browser and type in *localhost:8080/* and work through the application 
