@@ -15,4 +15,13 @@ public class ApplicationProps {
     public String getProperty(String pPropertyKey) {
         return env.getProperty(pPropertyKey);
     }
+
+    public String getP12FilePath(String signingKeyFilePath) {
+        return System.getProperty("user.dir") +
+                System.getProperty("file.separator")+ "src" +
+                System.getProperty("file.separator")+ "main" +
+                System.getProperty("file.separator")+ "resources" +
+                System.getProperty("file.separator")+
+                getProperty("signingKeyFilePath");
+    }
 } 

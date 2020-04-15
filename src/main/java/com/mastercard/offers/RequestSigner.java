@@ -29,7 +29,9 @@ public class RequestSigner {
         System.out.println("Props="+props);
 
         String consumerKey = props.getProperty("consumerKey");
-        String signingKeyFilePath = props.getProperty("signingKeyFilePath");
+        String signingKeyFilePath = props.getP12FilePath("signingKeyFilePath");
+        System.out.println("signingKeyFilePath="+signingKeyFilePath);
+
         String signingKeyAlias = props.getProperty("keyalias");
         String signingKeyPassword = props.getProperty("keystorepassword");
         PrivateKey signingKey = AuthenticationUtils.loadSigningKey(signingKeyFilePath, signingKeyAlias, signingKeyPassword);
