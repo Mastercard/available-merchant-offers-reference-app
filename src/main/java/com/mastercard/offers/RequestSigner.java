@@ -13,6 +13,7 @@ import java.security.cert.CertificateException;
 import java.util.List;
 
 public class RequestSigner {
+
     /**
      * Intercepts and signs the request. Using Stage GW for testing as SBX is not viable for this Service
      * @// TODO: 13/04/2020 Load properties from a file
@@ -24,16 +25,19 @@ public class RequestSigner {
      * @throws NoSuchAlgorithmException
      * @throws UnrecoverableKeyException
      */
-    public static void signRequest(ApiClient client) throws IOException, NoSuchProviderException, KeyStoreException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
-        String consumerKey = "6QO2YfK6OKPzYZOxNA-jzX6giLUjmhTp_2CCU5_Q39a9ebc0!f1b0a15d1e9748d0906b3d2f90403b500000000000000000";
-        String signingKeyFilePath = "/Users/ishfaqlone/officeprojs/AvailMerchantOffersReferenceImpl/src/main/resources/test-merchant-avail-offers-sandbox.p12";
-        String signingKeyAlias = "keyalias";
-        String signingKeyPassword = "keystorepassword";
+    public static void signRequest(ApiClient client, ApplicationProps props) throws IOException, NoSuchProviderException, KeyStoreException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
+        System.out.println("Props="+props);
+
+        String consumerKey = props.getProperty("consumerKey");
+        String signingKeyFilePath = props.getProperty("signingKeyFilePath");
+        String signingKeyAlias = props.getProperty("keyalias");
+        String signingKeyPassword = props.getProperty("keystorepassword");
         PrivateKey signingKey = AuthenticationUtils.loadSigningKey(signingKeyFilePath, signingKeyAlias, signingKeyPassword);
 
-        client.setBasePath("https://stage.api.mastercard.com/de/merchantoffers");
-        client.setDebugging(true);
-        client.setReadTimeout(40000);
+        client.setBasePath(props.getProperty("basepath"));
+        client.setDebugging(Boolean.valueOf(props.getProperty("debug")));
+        client.setReadTimeout(Integer.parseInt(props.getProperty("readtimeout")));
+
         List<Interceptor> interceptors = client.getHttpClient().networkInterceptors();
         interceptors.add(new ForceJsonResponseInterceptor());
         interceptors.add(new OkHttp2OAuth1Interceptor(consumerKey, signingKey));

@@ -4,6 +4,7 @@ import org.openapitools.client.ApiClient;
 import org.openapitools.client.api.OffersApi;
 import org.openapitools.client.api.ReferenceDataApi;
 import org.openapitools.client.model.Offer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,15 @@ import java.util.List;
 @RequestMapping(method = RequestMethod.POST)
 public class AvailableOffersController {
 
+    @Autowired
+    private ApplicationProps props;
+
     @GetMapping("/productTypes")
     public String getProductTypes(Model model) {
         try {
             ApiClient client = new ApiClient();
 
-            RequestSigner.signRequest(client);
+            RequestSigner.signRequest(client, props);
             System.out.println("Signing Client: " +client);
 
             ReferenceDataApi api = new ReferenceDataApi(client);
@@ -41,7 +45,7 @@ public class AvailableOffersController {
         try {
             ApiClient client = new ApiClient();
 
-            RequestSigner.signRequest(client);
+            RequestSigner.signRequest(client, props);
             System.out.println("Signing Client: " + client);
 
             ReferenceDataApi api = new ReferenceDataApi(client);
@@ -86,7 +90,7 @@ public class AvailableOffersController {
         try {
             ApiClient client = new ApiClient();
 
-            RequestSigner.signRequest(client);
+            RequestSigner.signRequest(client, props);
             System.out.println("Signing Client: " + client);
 
             OffersApi api = new OffersApi(client);
