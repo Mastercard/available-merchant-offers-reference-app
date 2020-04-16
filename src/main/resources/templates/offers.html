@@ -8,6 +8,8 @@
 
 <p><h1>Available Merchant Offers</h1></p>
 
+<span th:if="${empty}">No matching offers found</span>
+<span th:unless="${empty}">
 <table border="1">
     <thead>
     <tr>
@@ -38,8 +40,9 @@
     </tr>
     </tbody>
 </table>
+</span>
 
-<p> <a href="/index.html">Home</a></p>
+<p> <a href="/searchOffers">Back</a></p>
 
 </body>
 </html>

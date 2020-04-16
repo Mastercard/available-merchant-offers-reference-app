@@ -113,14 +113,14 @@ public class AvailableOffersController {
                     "java", "application/json", categoryCode, null,
                     null, null, sort, unitSystem, searchText);
 
+            model.addAttribute("empty", offers.isEmpty());
             model.addAttribute("offers", offers);
         } catch (Exception e) {
             System.out.println("Error: " + e);
-            model.addAttribute("error", e.getMessage());
+            model.addAttribute("error", e);
             return "error";
         }
 
         return "offers";
     }
-
 }
