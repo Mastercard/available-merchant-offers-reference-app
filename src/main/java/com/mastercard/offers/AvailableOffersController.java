@@ -1,9 +1,12 @@
 package com.mastercard.offers;
 
 import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
 import org.openapitools.client.api.OffersApi;
 import org.openapitools.client.api.ReferenceDataApi;
 import org.openapitools.client.model.Offer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -21,18 +26,19 @@ public class AvailableOffersController {
 
     @Autowired
     private ApplicationProps props;
+    private static final Logger log = LoggerFactory.getLogger(AvailableOffersController.class);
 
     @GetMapping("/productTypes")
     public String getProductTypes(Model model) {
         try {
             ApiClient client = new ApiClient();
             RequestSigner.signRequest(client, props);
-            System.out.println("Signing Client: " +client);
+            log.info("Signing Client: " + client);
 
             ReferenceDataApi api = new ReferenceDataApi(client);
             model.addAttribute("productTypes", api.getProductTypes("java","application/json"));
         } catch (Exception e) {
-            System.out.println("Error: "+e);
+            log.error("Error: "+e);
             model.addAttribute("error", e.getMessage());
             return "error";
         }
@@ -44,12 +50,12 @@ public class AvailableOffersController {
         try {
             ApiClient client = new ApiClient();
             RequestSigner.signRequest(client, props);
-            System.out.println("Signing Client: " + client);
+            log.info("Signing Client: " + client);
 
             ReferenceDataApi api = new ReferenceDataApi(client);
             model.addAttribute("offerCategories", api.getOfferCategories("java", "application/json"));
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+            log.error("Error: " + e);
             model.addAttribute("error", e.getMessage());
             return "error";
         }
@@ -62,13 +68,17 @@ public class AvailableOffersController {
         try {
             ApiClient client = new ApiClient();
             RequestSigner.signRequest(client, props);
-            System.out.println("Signing Client: " +client);
+            log.info("Signing Client: " +client);
 
             ReferenceDataApi api = new ReferenceDataApi(client);
             model.addAttribute("productTypes", api.getProductTypes("java","application/json"));
             model.addAttribute("offerCategories", api.getOfferCategories("java", "application/json"));
+        } catch (ApiException e) {
+            log.error("API Exception: "+e);
+            model.addAttribute("error", e.getMessage());
+            return "error";
         } catch (Exception e) {
-            System.out.println("Error: "+e);
+            log.error("Error: "+e);
             model.addAttribute("error", e.getMessage());
             return "error";
         }
@@ -106,7 +116,7 @@ public class AvailableOffersController {
             ApiClient client = new ApiClient();
 
             RequestSigner.signRequest(client, props);
-            System.out.println("Signing Client: " + client);
+            log.info("Signing Client: " + client);
 
             OffersApi api = new OffersApi(client);
             List<Offer> offers = api.getMerchantOffers(new BigDecimal(latitude), new BigDecimal(longitude), productType, null,
@@ -115,8 +125,12 @@ public class AvailableOffersController {
 
             model.addAttribute("empty", offers.isEmpty());
             model.addAttribute("offers", offers);
+        }  catch (ApiException e) {
+            log.error("API Exception: "+e);
+            model.addAttribute("error", e.getMessage());
+            return "error";
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+            log.error("Error: " + e);
             model.addAttribute("error", e);
             return "error";
         }

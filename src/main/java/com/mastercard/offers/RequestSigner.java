@@ -6,6 +6,8 @@ import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import org.openapitools.client.ApiClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.security.*;
@@ -14,9 +16,10 @@ import java.util.List;
 
 public class RequestSigner {
 
+    private static final Logger log = LoggerFactory.getLogger(RequestSigner.class);
+
     /**
      * Intercepts and signs the request. Using Stage GW for testing as SBX is not viable for this Service
-     * @// TODO: 13/04/2020 Load properties from a file
      * @param client
      * @throws IOException
      * @throws NoSuchProviderException
@@ -26,11 +29,11 @@ public class RequestSigner {
      * @throws UnrecoverableKeyException
      */
     public static void signRequest(ApiClient client, ApplicationProps props) throws IOException, NoSuchProviderException, KeyStoreException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
-        System.out.println("Props="+props);
+        log.info("Props="+props);
 
         String consumerKey = props.getProperty("consumerKey");
         String signingKeyFilePath = props.getP12FilePath("signingKeyFilePath");
-        System.out.println("signingKeyFilePath="+signingKeyFilePath);
+        log.info("signingKeyFilePath="+signingKeyFilePath);
 
         String signingKeyAlias = props.getProperty("keyalias");
         String signingKeyPassword = props.getProperty("keystorepassword");

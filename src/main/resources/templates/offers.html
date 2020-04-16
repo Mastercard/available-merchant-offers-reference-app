@@ -16,7 +16,7 @@
         <th>Offer Code </th>
         <th>Offer </th>
         <th>Offer Detail </th>
-        <th>Activate</th>
+        <!--th>Activate</th-->
         <th>Category </th>
         <th>Merchant Distance </th>
         <th>Eligibility Dates </th>
@@ -27,15 +27,21 @@
     <tbody align="center">
     <tr th:each="offer: ${offers}" align="center">
         <td th:text="${offer.offerId}" />
-        <td> <label th:text="${offer.title} " /> <img th:src="${offer.offerImages.squareImageUrl}" height="42" width="42"/></td>
+        <td> <label th:text="${offer.title} " /> <img th:src="${offer.offerImages.squareImageUrl}" height="42" width="42" th:alt="${offer.description}"/></td>
         <td th:text="${offer.subTitle} " />
-        <td th:text="${offer.description} " />
+        <!--td th:text="${offer.description} " /-->
         <td th:text="${offer.category} " />
-        <td> <label th:text="${offer.distanceToMerchant}" /> <label th:text="${offer.distanceUnit}" /> </td>
+        <td> <label th:text="${offer.distanceToMerchant}" /> <label th:text="${offer.distanceUnit}" /></td>
 
         <td>
-            <label th:text="${offer.offerEligibility.startDate}" />
-            - <label th:text="${offer.offerEligibility.endDate}" /> </td>
+            <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd''T''HH:mm:ss')}">
+                <label th:text="${#dates.format(sdf.parse(offer.offerEligibility.startDate), 'dd-MMM-yyyy')}" />
+            </th:block>
+            -
+            <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd''T''HH:mm:ss')}">
+                <label th:text="${#dates.format(sdf.parse(offer.offerEligibility.endDate), 'dd-MMM-yyyy')}" />
+            </th:block>
+        </td>
         <td th:text="${offer.merchant.name} " />
     </tr>
     </tbody>
