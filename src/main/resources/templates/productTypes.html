@@ -6,28 +6,14 @@
 </head>
 <body>
 
-<p><h1>Available Merchant Offers</h1></p>
-<p><h2>Supported Products </h2></p>
+<p><h1>Merchant Offers</h1></p>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Product Code</th>
-        <th>Product Name</th>
-    </tr>
-    </thead>
-
-    <tbody align="center">
-        <tr th:each="productType: ${productTypes}" align="center">
-            <td><a th:href="@{/offers(productType=${productType.productType},latitude=90,longitude=-90)}">
-                <label th:text="${productType.productType}" /></a>
-            </td>
-            <td th:text="${productType.displayProductType} " />
-        </tr>
-    </tbody>
-</table>
-
-<p> <a href="/index.html">Home</a></p>
+<p><h2>Supported Products:
+<select id="productType" name="productType">
+    <option th:each="productType: ${productTypes}" th:value="${productType.productType}" th:text="${productType.displayProductType}" />
+</select>
+</h2></p>
+<p> <a href="/index.html">Return</a></p>
 
 </body>
 </html>

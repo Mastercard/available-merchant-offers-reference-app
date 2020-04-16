@@ -26,7 +26,6 @@ public class AvailableOffersController {
     public String getProductTypes(Model model) {
         try {
             ApiClient client = new ApiClient();
-
             RequestSigner.signRequest(client, props);
             System.out.println("Signing Client: " +client);
 
@@ -44,13 +43,11 @@ public class AvailableOffersController {
     public String getOfferCategories(Model model) {
         try {
             ApiClient client = new ApiClient();
-
             RequestSigner.signRequest(client, props);
             System.out.println("Signing Client: " + client);
 
             ReferenceDataApi api = new ReferenceDataApi(client);
             model.addAttribute("offerCategories", api.getOfferCategories("java", "application/json"));
-
         } catch (Exception e) {
             System.out.println("Error: " + e);
             model.addAttribute("error", e.getMessage());
@@ -58,6 +55,24 @@ public class AvailableOffersController {
         }
 
         return "offerCategories";
+    }
+
+    @GetMapping("/searchOffers")
+    public String searchOffers(Model model) {
+        try {
+            ApiClient client = new ApiClient();
+            RequestSigner.signRequest(client, props);
+            System.out.println("Signing Client: " +client);
+
+            ReferenceDataApi api = new ReferenceDataApi(client);
+            model.addAttribute("productTypes", api.getProductTypes("java","application/json"));
+            model.addAttribute("offerCategories", api.getOfferCategories("java", "application/json"));
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+        return "searchOffers";
     }
 
     /**

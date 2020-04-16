@@ -6,26 +6,15 @@
 </head>
 <body>
 
-<p><h1>Available Merchant Offers</h1></p>
-<p><h2>Supported Categories</h2></p>
+<p><h1>Merchant Offers</h1></p>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>Category</th>
-        <th>Category Name</th>
-    </tr>
-    </thead>
+<p><h2>Supported Categories:
+    <select id="categoryCode" name="categoryCode">
+        <option th:each="offerCategory: ${offerCategories}" th:value="${offerCategory.id}" th:text="${offerCategory.name}" />
+    </select>
+</h2></p>
 
-    <tbody align="center">
-        <tr th:each="offerCategory: ${offerCategories}" align="center">
-                <td th:text="${offerCategory.id}" />
-                <td th:text="${offerCategory.name} " />
-        </tr>
-    </tbody>
-</table>
-
-<p> <a href="/index.html">Home</a></p>
+<p> <a href="/index.html">Return</a></p>
 
 </body>
 </html>

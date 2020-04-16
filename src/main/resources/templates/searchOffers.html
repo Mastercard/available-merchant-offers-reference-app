@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Available Offers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<p><h1>Search Merchant Offers</h1></p>
+
+<form action="/offers" method="post">
+    <table>
+        <tr><td>Latitude: </td><td><input name="latitude" type="text" value="90"/></td></tr>
+        <tr><td>Longitude: </td><td><input name="longitude" type="text" value="-90"/></td></tr>
+        <tr><td>Product Type: </td>
+            <td>
+                <select id="productType" name="productType">
+                    <option th:each="productType: ${productTypes}" th:value="${productType.productType}" th:text="${productType.displayProductType}" />
+                </select>
+            </td>
+        </tr>
+        <tr><td>Category Code: </td>
+            </td>
+            <td>
+                <select id="categoryCode" name="categoryCode">
+                    <option th:each="offerCategory: ${offerCategories}" th:value="${offerCategory.id}" th:text="${offerCategory.name}" />
+                </select>
+            </td>
+        </tr>
+        <tr><td align="center"><p><input type="submit" value="Search Offers" /></p></td></tr>
+    </table>
+
+</form>
+
+<p> <a href="/index.html">Return</a></p>
+
+</body>
+</html>
