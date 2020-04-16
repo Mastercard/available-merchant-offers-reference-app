@@ -27,11 +27,14 @@
     <tbody align="center">
     <tr th:each="offer: ${offers}" align="center">
         <td th:text="${offer.offerId}" />
-        <td> <label th:text="${offer.title} " /> <img th:src="${offer.offerImages.squareImageUrl}" height="42" width="42" th:alt="${offer.description}"/></td>
+        <td>
+            <img th:src="${offer.offerImages.squareImageUrl}" height="42" width="42" th:alt="${offer.description}"/> <br/>
+            <label th:text="${offer.title} " />
+        </td>
         <td th:text="${offer.subTitle} " />
         <!--td th:text="${offer.description} " /-->
         <td th:text="${offer.category} " />
-        <td> <label th:text="${offer.distanceToMerchant}" /> <label th:text="${offer.distanceUnit}" /></td>
+        <td> <label th:text="${offer.distanceUnit}" /><label th:text="${offer.distanceToMerchant}" /> </td>
 
         <td>
             <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd''T''HH:mm:ss')}">
