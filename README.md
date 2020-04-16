@@ -16,7 +16,7 @@ JDK 1.8.0 or later
 On IntelliJ IDEA: 
 *File/New/Project From Version Control/* (Select GIt from version control dropdown)
 
-Setup your signing keys (p12) in the application.properties 
+Setup your signing keys (p12) in the application.properties if you dont want to use the default keys associated with this project 
 
 #### Open Maven window:
  Click on *Lifecycle/Clean*
