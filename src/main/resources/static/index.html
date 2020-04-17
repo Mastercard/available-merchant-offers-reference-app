@@ -2,30 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Available Merchant Offers</title>
-    <link rel="stylesheet" media="screen" href="style.css?v=8may2013">
+    <link rel="stylesheet" media="screen" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body id="css-zen-garden">
+<body>
 <h1>Available Merchant Offers</h1>
 
 <p><b>
     <form action="/productTypes" method="post">
         <table>
-            <tr><td><b>Supported Products:</b> <input type="submit" value="Products" /></td></tr>
+            <tr><td><h2>Supported Products: <input type="submit" value="Products" /></h2></td></tr>
         </table>
     </form>
 
     <p/>
     <form action="/offerCategories" method="post">
         <table>
-            <tr><td><b>Supported Categories:</b><input type="submit" value="Categories" /></td></tr>
+            <tr><td><h2>Supported Categories: <input type="submit" value="Categories" /></h2></td></tr>
         </table>
     </form>
 
     <p/>
     <form action="/searchOffers" method="post">
         <table>
-            <tr><td align="center"><input type="submit" value="Search Offers" /></td></tr>
+            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="center"><h2><input type="submit" value="Search Offers" /></h2></td></tr>
         </table>
     </form>
 
