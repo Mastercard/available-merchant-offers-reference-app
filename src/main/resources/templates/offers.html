@@ -34,13 +34,13 @@
         <td th:text="${offer.subTitle} " />
         <!--td th:text="${offer.description} " /-->
         <td th:text="${offer.category} " />
-        <td> <label th:text="${offer.distanceUnit}" /><label th:text="${offer.distanceToMerchant}" /> </td>
+        <td><label th:text="${offer.distanceToMerchant}" /> <label th:text="${offer.distanceUnit}" /></td>
 
         <td>
             <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd''T''HH:mm:ss')}">
                 <label th:text="${#dates.format(sdf.parse(offer.offerEligibility.startDate), 'dd-MMM-yyyy')}" />
             </th:block>
-            -
+            <br/>-<br/>
             <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd''T''HH:mm:ss')}">
                 <label th:text="${#dates.format(sdf.parse(offer.offerEligibility.endDate), 'dd-MMM-yyyy')}" />
             </th:block>
