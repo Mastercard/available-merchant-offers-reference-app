@@ -35,7 +35,7 @@ This will start up your local server.
 #### Go to your browser and type in *localhost:8080/* and work through the application 
 
 
-#### Some insights from using the service
+*Some insights from using the service*
  It returns a null pointer exception where no offers are found. 
  Should return a more meaningful error code code or message Or even a empty list
  Offers API has Category Code as optional but looks to be a mandatory   
