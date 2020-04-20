@@ -35,9 +35,9 @@ This will start up your local server.
 #### Go to your browser and type in *localhost:8080/* and work through the application 
 
 
-#### Some insights from using the service
- *It returns a null pointer exception where no offers are found*
- 
- *Should return a more meaningful error code code or message Or even a empty list*
+#### Some insights while using the service
+  *Could not run this service on Sandbox as the service is not configured properly in Sandbox. Works from STAGE though, however STAGE is    not stable all the time*
+  
+  *It returns a null pointer exception where no offers are found, should return a more meaningful error code code or message Or even a empty list*
  
  *Offers API has Category Code as optional but looks to be a mandatory*   
