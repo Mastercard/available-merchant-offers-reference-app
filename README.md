@@ -38,6 +38,6 @@ This will start up your local server.
 #### Some insights while using the service
   *Could not run this service on Sandbox as the service is not configured properly in Sandbox. Works from STAGE though, however STAGE is    not stable all the time*
   
-  *It returns a null pointer exception where no offers are found, should return a more meaningful error code code or message Or even a empty list*
+  *It returns a null pointer exception where no offers are found, should return a more meaningful error code or message Or even an empty list*
  
  *Offers API has Category Code as optional but looks to be a mandatory*   
