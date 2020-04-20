@@ -8,7 +8,7 @@ Maven 3.6 or later
 
 JDK 1.8.0 or later
 
-#### Mastercard Developers Account with access to Available Merchant Offers API. (Default Keys are configured for this project) 
+#### Mastercard Developers Account with access to Available Merchant Offers API. (Default STAGE Keys are configured for this project) 
 
 #### If your editor is IntelliJ IDEA, it will have the Maven and JDK already with it.
 
@@ -16,7 +16,7 @@ JDK 1.8.0 or later
 On IntelliJ IDEA: 
 *File/New/Project From Version Control/* (Select GIt from version control dropdown)
 
-Setup your signing keys (p12) in the application.properties if you dont want to use the default keys associated with this project 
+Setup your signing keys (p12) in the application.properties if you dont want to use the default STAGE keys associated with this project 
 
 #### Open Maven window:
  Click on *Lifecycle/Clean*
