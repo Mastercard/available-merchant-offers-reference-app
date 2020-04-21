@@ -2,38 +2,85 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Search Available Offers</title>
-    <link rel="stylesheet" media="screen" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<p><h1>Search Merchant Offers</h1></p>
+<div class="header">
+    <p class="mdc-typography mdc-typography--headline6">Search Merchant Offers</p>
+</div>
 
-<form action="/offers" method="post">
-    <table>
-        <tr><td>Latitude: </td><td><input name="latitude" type="text" value="90"/></td></tr>
-        <tr><td>Longitude: </td><td><input name="longitude" type="text" value="-90"/></td></tr>
-        <tr><td>Product Type: </td>
-            <td>
-                <select id="productType" name="productType">
-                    <option th:each="productType: ${productTypes}" th:value="${productType.productType}" th:text="${productType.displayProductType}" />
-                </select>
-            </td>
-        </tr>
-        <tr><td>Category Code: </td>
-            </td>
-            <td>
-                <select id="categoryCode" name="categoryCode">
-                    <option th:each="offerCategory: ${offerCategories}" th:value="${offerCategory.id}" th:text="${offerCategory.name}" />
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Search Offers" /></td></tr>
-    </table>
+<div class="main">
+    <form action="/offers" method="post">
+        <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense">
+            <input name="latitude" class="mdc-text-field__input" id="text-field-hero-input" type="text" value="90">
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                    <label for="text-field-hero-input" class="mdc-floating-label mdc-floating-label--float-above">Latitude</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
+        </div>
 
-</form>
+
+        <!-- longitude -->
+        <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense">
+            <input name="longitude" class="mdc-text-field__input" id="text-field-hero-input" type="text" value="-90">
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                    <label for="text-field-hero-input" class="mdc-floating-label mdc-floating-label--float-above">Longitude</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
+        </div>
+
+        <!-- productType -->
+        <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense">
+            <!--input name="productType" class="mdc-text-field__input" id="text-field-hero-input" type="text" value="MCG"-->
+            <select id="productType" name="productType">
+                <option th:each="productType: ${productTypes}" th:value="${productType.productType}" th:text="${productType.displayProductType}" />
+            </select>
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                    <label for="text-field-hero-input" class="mdc-floating-label mdc-floating-label--float-above">Product Type</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
+        </div>
+
+        <!-- categoryCode -->
+        <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--dense">
+            <!--input name="categoryCode" class="mdc-text-field__input" id="text-field-hero-input" type="text" value="201811010002"-->
+            <select id="categoryCode" name="categoryCode">
+                <option th:each="offerCategory: ${offerCategories}" th:value="${offerCategory.id}" th:text="${offerCategory.name}" />
+            </select>
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                    <label for="text-field-hero-input" class="mdc-floating-label mdc-floating-label--float-above">Category Code</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
+        </div>
+        <br /><br />
+        <input class="mdc-button mdc-button--raised" type="submit" value="Search Offers" />
+    </form>
+</div>
+
+<script>
+    const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
+      return new mdc.textField.MDCTextField.attachTo(el);
+    });
+</script>
+
 
 <p> <a href="/index.html">Home</a></p>
 

@@ -2,19 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Available Offers - Product Types</title>
-    <link rel="stylesheet" media="screen" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<p><h1>Merchant Offers</h1></p>
+<div class="header">
+    <p class="mdc-typography mdc-typography--headline6">Available Merchant Offers - Products</p>
+    <div>
+        <a href="/" ><input type="submit" value="Back to Home" /></a>
+    </div>
+</div>
 
-<p><h2>Supported Products:
-<select id="productType" name="productType">
-    <option th:each="productType: ${productTypes}" th:value="${productType.productType}" th:text="${productType.displayProductType}" />
-</select>
-</h2></p>
-<p> <a href="/index.html">Return</a></p>
+<div class="main">
+    <p class="mdc-typography mdc-typography--headline6">Supported Products:</p>
+    <select id="productType" name="productType">
+        <option th:each="productType: ${productTypes}" th:value="${productType.productType}" th:text="${productType.displayProductType}" />
+    </select>
+</div>
 
 </body>
 </html>

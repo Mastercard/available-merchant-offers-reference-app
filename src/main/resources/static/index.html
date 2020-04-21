@@ -2,35 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Available Merchant Offers</title>
-    <link rel="stylesheet" media="screen" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Available Merchant Offers</h1>
 
-<p><b>
-    <form action="/productTypes" method="post">
-        <table>
-            <tr><td><h2>Supported Products: <input type="submit" value="Products" /></h2></td></tr>
-        </table>
-    </form>
+<div class="header">
+    <p class="mdc-typography mdc-typography--headline6">Available Merchant Offers</p>
+    <div>
+        <form action="/productTypes" method="post">
+            <input type="submit" value="View Supported Products" />
+        </form>
+        <form action="/offerCategories" method="post">
+            <input type="submit" value="View Supported Categories" />
+        </form>
+    </div>
+</div>
 
-    <p/>
-    <form action="/offerCategories" method="post">
-        <table>
-            <tr><td><h2>Supported Categories: <input type="submit" value="Categories" /></h2></td></tr>
-        </table>
-    </form>
-
-    <p/>
+<div class="header">
     <form action="/searchOffers" method="post">
-        <table>
-            <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td align="center"><h2><input type="submit" value="Search Offers" /></h2></td></tr>
-        </table>
+        <br/>
+        <input class="mdc-button mdc-button--raised" type="submit" value="Search Offers" />
+        <br/>
+        <br/>
     </form>
-
-</b></p>
+    <br/>
+</div>
 
 </body>
 </html>

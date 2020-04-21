@@ -7,16 +7,11 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.api.OffersApi;
-import org.openapitools.client.api.OffersApiTest;
-import org.openapitools.client.api.ReferenceDataApi;
-import org.openapitools.client.model.Merchant;
-import org.openapitools.client.model.OfferCategory;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.*;
 import java.security.cert.CertificateException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,15 +20,13 @@ public class TestMerchantOffers {
         public static void main(String[] args) throws Exception {
 
             ApiClient client = new ApiClient();
-
             signRequest(client);
             System.out.println("Signing Client: " +client);
 
-   /*         ReferenceDataApi api = new ReferenceDataApi(client);
-              System.out.println(api.getProductTypes("java","application/json"));
-
+   /*       ReferenceDataApi api = new ReferenceDataApi(client);
+            System.out.println(api.getProductTypes("java","application/json"));
             System.out.println(api.getOfferCategories(null,null));
-*/
+    */
             OffersApi offers = new OffersApi(client);
             offers.getMerchantOffers(new BigDecimal(90),new BigDecimal(-90),"MCG",null,null,null,
                     null, null,null,null,null,null,null);
@@ -43,6 +36,7 @@ public class TestMerchantOffers {
         private static void signRequest(ApiClient client) throws IOException, NoSuchProviderException, KeyStoreException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
             String consumerKey = "6QO2YfK6OKPzYZOxNA-jzX6giLUjmhTp_2CCU5_Q39a9ebc0!f1b0a15d1e9748d0906b3d2f90403b500000000000000000";
             String signingKeyFilePath = "/Users/ishfaqlone/officeprojs/AvailMerchantOffersReferenceImpl/src/main/resources/test-merchant-avail-offers-sandbox.p12";
+            System.out.println("**Key="+signingKeyFilePath);
             String signingKeyAlias = "keyalias";
             String signingKeyPassword = "keystorepassword";
             PrivateKey signingKey = AuthenticationUtils.loadSigningKey(signingKeyFilePath, signingKeyAlias, signingKeyPassword);
