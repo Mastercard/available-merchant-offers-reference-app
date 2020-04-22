@@ -35,7 +35,11 @@ public class AvailableOffersController {
 
             ReferenceDataApi api = new ReferenceDataApi(client);
             model.addAttribute("productTypes", api.getProductTypes("java","application/json"));
-        } catch (Exception e) {
+        } catch (ApiException e) {
+            log.error("API Error: "+e);
+            model.addAttribute("error", e.getCode() + ": " +e.getMessage());
+            return "error";
+        }  catch (Exception e) {
             log.error("Error: "+e);
             model.addAttribute("error", e.getMessage());
             return "error";
@@ -52,8 +56,12 @@ public class AvailableOffersController {
 
             ReferenceDataApi api = new ReferenceDataApi(client);
             model.addAttribute("offerCategories", api.getOfferCategories("java", "application/json"));
+        } catch (ApiException e) {
+            log.error("API Error: " + e);
+            model.addAttribute("error", e.getCode() + ": " +e.getMessage());
+            return "error";
         } catch (Exception e) {
-            log.error("Error: " + e);
+            log.error("Error: "+e);
             model.addAttribute("error", e.getMessage());
             return "error";
         }
@@ -73,7 +81,7 @@ public class AvailableOffersController {
             model.addAttribute("offerCategories", api.getOfferCategories("java", "application/json"));
         } catch (ApiException e) {
             log.error("API Exception: "+e);
-            model.addAttribute("error", e.getMessage());
+            model.addAttribute("error", e.getCode() + ": " +e.getMessage());
             return "error";
         } catch (Exception e) {
             log.error("Error: "+e);
@@ -125,7 +133,7 @@ public class AvailableOffersController {
             model.addAttribute("offers", offers);
         }  catch (ApiException e) {
             log.error("API Exception: "+e);
-            model.addAttribute("error", e.getMessage());
+            model.addAttribute("error", e.getCode() + ": " +e.getMessage());
             return "error";
         } catch (Exception e) {
             log.error("Error: " + e);
