@@ -16,9 +16,7 @@ This application requires consumer key and .p12 file as received from [Mastercar
 
 #### If your editor is IntelliJ IDEA, you will not need to download the Maven and JDK 
 
-#### Checkout the code from the repo
-On IntelliJ IDEA: 
-*File/New/Project From Version Control/* 
+#### Checkout the code onto your local machine
 
 #### If you do not want to use the default STAGE keys associated with this project. 
  - Setup account at [Mastercard Developers](https://developer.mastercard.com/account/sign-up)   
@@ -27,19 +25,22 @@ On IntelliJ IDEA:
  - Open `\src\main\resources\application.properties` and set these parameters: [consumerKey, signingKeyFilePath, keyalias, keystorepassword]. Replace 'stage' with 'sandbox' in the basepath parameter 
 
 ## Running on IntelliJ IDE. 
- Open Maven window to generate dependencies: Click on *Lifecycle/Clean & Lifecycle/Install*
+- On IntelliJ IDEA: 
+*File/New/Project From Version Control/* 
+
+- Open Maven window to generate dependencies: Click on *Lifecycle/Clean & Lifecycle/Install*
  Compile: *Lifecycle/clean & Lifecycle/compile*
  
- Run *AvailableOffersApplication.java*
+- Run *AvailableOffersApplication.java*
  
 This will start up your local server at port 8080 
 
 Go to your browser: *localhost:8080/* and work through the application 
 
 ## Running outside of IDE, from command line
-mvn package
+- mvn package
 
-java -jar target/AvailMerchantOffersReferenceImpl*
+- java -jar target/AvailMerchantOffersReferenceImpl*
 
 Go to your browser: *localhost:8080/* and work through the application 
 
