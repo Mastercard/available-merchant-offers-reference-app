@@ -2,7 +2,7 @@
 
 This is a reference application that demonstrates how Available Merchant Offers APIs can be used. 
 Please see here for details on the APIs: [Mastercard Developers](https://developer.mastercard.com/product/avail-merchant-offers). 
-This application illustrates connecting to the cross-border APIs. It requires consumer key and .p12 file as received from [Mastercard Developers](https://developer.mastercard.com/dashboard).
+This application requires consumer key and .p12 file as received from [Mastercard Developers](https://developer.mastercard.com/dashboard).
 
 #### Setup Pre-requisites:
 
@@ -10,11 +10,11 @@ Maven 3.6 or later
 
 JDK 1.8.0 or later
 
-spring-framework  
+Spring-framework  
 
 IntelliJ IDEA (or any other IDE of your choice)
 
-Mastercard Developers Account with access to Available Merchant Offers API. (Default STAGE Keys are configured with this project) 
+Mastercard Developers Account with access to Available Merchant Offers API. (By default STAGE Keys are configuredto run with this project) 
 
 #### If your editor is IntelliJ IDEA, you will not need to download the Maven and JDK 
 
