@@ -19,21 +19,21 @@ This application requires consumer key and .p12 file as received from [Mastercar
 #### Checkout the code onto your local machine
 
 #### Configuration
-#### If you do not want to use the default STAGE keys associated with this project. 
+If you do not want to use the default STAGE keys associated with this project. 
  - Setup account at [Mastercard Developers](https://developer.mastercard.com/account/sign-up)   
  - Create a project & download signing key for the Avail Merchant Offers API. It will download a zip file.  
  - Select .p12 file and copy it to `src\main\resources` folder.
  - Open `${project.basedir}/src/main/resources/application.properties` and set these parameters: [consumerKey, signingKeyFilePath, keyalias, keystorepassword]. Replace 'stage' with 'sandbox' in the basepath parameter 
 
 #### Build and Execute
-#### Running outside of IDE, from command line
+Running outside of IDE, from command line
  - mvn clean install
 
  - java -jar target/AvailMerchantOffersReferenceImpl*
 
 Go to your browser: *localhost:8080/* and work through the application 
 
-#### Running on IntelliJ IDE. 
+Running on IntelliJ IDE. 
  - On IntelliJ IDEA: *File/New/Project From Version Control/* 
 
  - Open Maven window to generate dependencies: Click on *Lifecycle - Clean &  Install*
@@ -46,8 +46,8 @@ This will start up your local server at port 8080
 Go to your browser: *localhost:8080/* and work through the application 
 
 #### Some insights while using the service
- *Could not run this service on Sandbox as the service is not configured properly in Sandbox. Works from STAGE though, however STAGE is not stable all the time*
+ - Could not run this service on Sandbox as the service is not configured properly in Sandbox. Works from STAGE though, however STAGE is not stable all the time
   
- *It returns a null pointer exception where no offers are found, should return a more meaningful error code or message Or even an empty list*
+ - It returns a null pointer exception where no offers are found, should return a more meaningful error code or message Or even an empty list
  
- *Offers API has Category Code as optional but it looks to be a mandatory*   
+ - Offers API has Category Code as optional but it looks to be a mandatory
