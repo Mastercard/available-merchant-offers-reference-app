@@ -16,15 +16,15 @@ This application requires consumer key and .p12 file as received from [Mastercar
 
 #### If your editor is IntelliJ IDEA, you will not need to download the Maven and JDK 
 
-#### Checkout the code from the repo. Import the code into your IDE: 
+#### Checkout the code from the repo
 On IntelliJ IDEA: 
-*File/New/Project From Version Control/* (Select GIt from version control dropdown)
+*File/New/Project From Version Control/* 
 
-If you do not want to use the default STAGE/Sandbox keys associated with this project. 
+#### If you do not want to use the default STAGE keys associated with this project. 
  - Setup account at [Mastercard Developers](https://developer.mastercard.com/account/sign-up)   
  - Create a project & download signing key for the Avail Merchant Offers API. It will download a zip file.  
  - Select .p12 file and copy it to `src\main\resources` folder.
- - Open `\src\main\resources\application.properties` and set these parameters: [consumerKey, signingKeyFilePath, keyalias, keystorepassword] 
+ - Open `\src\main\resources\application.properties` and set these parameters: [consumerKey, signingKeyFilePath, keyalias, keystorepassword]. Replace 'stage' with 'sandbox' in the basepath parameter 
 
 ## Running on IntelliJ IDE. 
  Open Maven window to generate dependencies: Click on *Lifecycle/Clean & Lifecycle/Install*
