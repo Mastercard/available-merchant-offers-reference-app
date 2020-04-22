@@ -8,43 +8,44 @@ This application requires consumer key and .p12 file as received from [Mastercar
 
  - Maven 3.6 or later
 
-- JDK 1.8.0 or later
+ - JDK 1.8.0 or later
 
-- Spring-framework  
+ - Spring Boot 2.2+  
 
-- IntelliJ IDEA (or any other IDE of your choice)
+ - A text editor or IDE
 
-#### If your editor is IntelliJ IDEA, you will not need to download the Maven and JDK 
+#### If your IDE is IntelliJ IDEA, you may not need to download the Maven and JDK 
 
 #### Checkout the code onto your local machine
 
+#### Configuration
 #### If you do not want to use the default STAGE keys associated with this project. 
  - Setup account at [Mastercard Developers](https://developer.mastercard.com/account/sign-up)   
  - Create a project & download signing key for the Avail Merchant Offers API. It will download a zip file.  
  - Select .p12 file and copy it to `src\main\resources` folder.
- - Open `\src\main\resources\application.properties` and set these parameters: [consumerKey, signingKeyFilePath, keyalias, keystorepassword]. Replace 'stage' with 'sandbox' in the basepath parameter 
+ - Open `${project.basedir}/src/main/resources/application.properties` and set these parameters: [consumerKey, signingKeyFilePath, keyalias, keystorepassword]. Replace 'stage' with 'sandbox' in the basepath parameter 
 
-## Running on IntelliJ IDE. 
-- On IntelliJ IDEA: 
-*File/New/Project From Version Control/* 
+#### Build and Execute
+#### Running outside of IDE, from command line
+ - mvn clean install
 
-- Open Maven window to generate dependencies: Click on *Lifecycle/Clean & Lifecycle/Install*
- Compile: *Lifecycle/clean & Lifecycle/compile*
+ - java -jar target/AvailMerchantOffersReferenceImpl*
+
+Go to your browser: *localhost:8080/* and work through the application 
+
+#### Running on IntelliJ IDE. 
+ - On IntelliJ IDEA: *File/New/Project From Version Control/* 
+
+ - Open Maven window to generate dependencies: Click on *Lifecycle - Clean &  Install*
+ Compile: *Lifecycle - Clean & compile*
  
-- Run *AvailableOffersApplication.java*
+ - Run *AvailableOffersApplication.java*
  
 This will start up your local server at port 8080 
 
 Go to your browser: *localhost:8080/* and work through the application 
 
-## Running outside of IDE, from command line
-- mvn package
-
-- java -jar target/AvailMerchantOffersReferenceImpl*
-
-Go to your browser: *localhost:8080/* and work through the application 
-
-## Some insights while using the service
+#### Some insights while using the service
  *Could not run this service on Sandbox as the service is not configured properly in Sandbox. Works from STAGE though, however STAGE is not stable all the time*
   
  *It returns a null pointer exception where no offers are found, should return a more meaningful error code or message Or even an empty list*
