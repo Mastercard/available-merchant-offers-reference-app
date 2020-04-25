@@ -29,7 +29,7 @@ If you do not want to use the default STAGE keys associated with this project.
 Running outside of IDE, from command line
  - mvn clean install
 
- - java -jar target/AvailMerchantOffersReferenceImpl*
+ - java -jar target/AvailMerchantOffersReferenceImpl-1.0.jar
 
 Go to your browser: *localhost:8080/* and work through the application 
 
@@ -37,7 +37,7 @@ Running on IntelliJ IDE.
  - On IntelliJ IDEA: *File/New/Project From Version Control/* 
 
  - Open Maven window to generate dependencies: Click on *Lifecycle - Clean &  Install*
- Compile: *Lifecycle - Clean & compile*
+ Compile: *Lifecycle - Compile*
  
  - Run *AvailableOffersApplication.java*
  
