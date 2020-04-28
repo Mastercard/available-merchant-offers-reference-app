@@ -48,6 +48,8 @@ Go to your browser: *localhost:8080/* and work through the application
 #### Some insights while using the service
  - Could not run this service on Sandbox as the service is not configured properly in Sandbox. Works from STAGE though, however STAGE is not stable all the time
   
- - It returns a null pointer exception where no offers are found, should return a more meaningful error code or message Or even an empty list
+ - It returns a null pointer exception where no offers are found
+ 
+ - Does not follow proper MC Error handling standards 
  
  - Offers API has Category Code as optional but it looks to be a mandatory
